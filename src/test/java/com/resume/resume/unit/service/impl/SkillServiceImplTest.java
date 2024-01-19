@@ -1,6 +1,7 @@
-package com.resume.resume.service.impl;
+package com.resume.resume.unit.service.impl;
 
 import com.resume.resume.repository.SkillRepository;
+import com.resume.resume.service.impl.SkillServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
