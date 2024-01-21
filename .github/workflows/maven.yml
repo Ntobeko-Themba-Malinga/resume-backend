@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Resume CI/CD
 
 on:
   push:
@@ -32,3 +32,6 @@ jobs:
 
     - name: Run Unit Tests
       run: mvn test
+
+    - name: Deploy to render
+      run: curl https://api.render.com/deploy/srv-cml8huv109ks73a7kn9g?key=MKWybj3cuW4
