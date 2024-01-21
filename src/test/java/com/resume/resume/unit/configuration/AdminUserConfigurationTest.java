@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Optional;
 
@@ -45,7 +46,11 @@ class AdminUserConfigurationTest {
         // Then
         verify(userRepository).save(userArgumentCaptor.capture());
 
-        assertThat(userArgumentCaptor.getValue()).isEqualTo(adminUser);
+        User user = userArgumentCaptor.getValue();
+        assertThat(user.getId()).isEqualTo(0);
+        assertThat(user.getUsername()).isEqualTo(adminUser.getUsername());
+        assertThat(new BCryptPasswordEncoder().matches(adminUser.getPassword(), user.getPassword())).isTrue();
+        assertThat(user.getRole()).isEqualTo(adminUser.getRole());
     }
 
     @Test
