@@ -20,7 +20,7 @@ public class SkillServiceImpl implements SkillService {
     }
 
     @Override
-    public void addSkill(Skill skill) {
-        skillRepository.save(skill);
+    public Skill addSkill(Skill skill) {
+        return skillRepository.save(skill);
     }
 }

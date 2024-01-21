@@ -8,5 +8,5 @@ public interface SkillService {
 
     public List<Skill> retrieveAllSkills();
 
-    public void addSkill(Skill skill);
+    public Skill addSkill(Skill skill);
 }

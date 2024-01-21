@@ -21,7 +21,7 @@ public class SkillController {
     }
 
     @PostMapping
-    public void addingSkill(@RequestBody Skill skill) {
-        skillService.addSkill(skill);
+    public Skill addingSkill(@RequestBody Skill skill) {
+        return skillService.addSkill(skill);
     }
 }
