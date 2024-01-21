@@ -3,10 +3,12 @@ package com.resume.resume.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Skill")
 @Data
+@NoArgsConstructor
 public class Skill {
 
     @Id

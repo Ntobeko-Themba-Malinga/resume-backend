@@ -7,4 +7,6 @@ import java.util.List;
 public interface SkillService {
 
     public List<Skill> retrieveAllSkills();
+
+    public void addSkill(Skill skill);
 }

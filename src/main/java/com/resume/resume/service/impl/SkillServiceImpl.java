@@ -18,4 +18,9 @@ public class SkillServiceImpl implements SkillService {
     public List<Skill> retrieveAllSkills() {
         return skillRepository.findAll();
     }
+
+    @Override
+    public void addSkill(Skill skill) {
+        skillRepository.save(skill);
+    }
 }
