@@ -101,4 +101,39 @@ class SkillServiceImplTest {
                 .isInstanceOf(SkillNotFoundException.class)
                 .hasMessage("Skill with id " + skillId + " not found!");
     }
+
+    @Test
+    void deleteSkillIfExist() {
+        // given
+        long id = 1;
+        Skill skill = new Skill(
+                "testSkill",
+                3
+        );
+
+        when(skillRepository.findById(id))
+                .thenReturn(Optional.of(skill));
+
+        // act
+        ArgumentCaptor<Skill> skillArgumentCaptor = ArgumentCaptor
+                .forClass(Skill.class);
+        underTest.deleteSkill(id);
+
+        verify(skillRepository).delete(skillArgumentCaptor.capture());
+
+        // then
+        assertThat(skillArgumentCaptor.getValue()).isEqualTo(skill);
+    }
+
+    @Test
+    void deleteSkillIfDoesNotExist() {
+        // given
+        long id = 1;
+
+        // act
+        // then
+        assertThatThrownBy(() -> underTest.deleteSkill(id))
+                .isInstanceOf(SkillNotFoundException.class)
+                .hasMessage("Skill with id " + id + " not found!");
+    }
 }

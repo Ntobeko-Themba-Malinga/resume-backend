@@ -35,4 +35,12 @@ public class SkillServiceImpl implements SkillService {
         skill.setLevel(updatedSkill.getLevel());
         return skill;
     }
+
+    @Override
+    public void deleteSkill(long id) {
+        Skill skill = skillRepository.findById(id)
+                .orElseThrow(() -> new SkillNotFoundException("Skill with id " + id + " not found!"));
+
+        skillRepository.delete(skill);
+    }
 }

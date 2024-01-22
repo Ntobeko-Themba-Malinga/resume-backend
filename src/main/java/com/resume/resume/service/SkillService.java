@@ -11,4 +11,6 @@ public interface SkillService {
     public Skill addSkill(Skill skill);
 
     public Skill updateSkill(long id, Skill updatedSkill);
+
+    public void deleteSkill(long id);
 }

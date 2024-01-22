@@ -30,4 +30,9 @@ public class SkillController {
                                @RequestBody Skill updatedSkill) {
         return skillService.updateSkill(skillId, updatedSkill);
     }
+
+    @DeleteMapping(path = "{skillId}")
+    public void deletingSkill(@PathVariable("skillId") long skillId) {
+        skillService.deleteSkill(skillId);
+    }
 }
