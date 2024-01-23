@@ -24,4 +24,10 @@ public class ProjectController {
     public Project addingAProject(@RequestBody Project project) {
         return projectService.addProject(project);
     }
+
+    @PutMapping(path = "{projectId}")
+    public Project updatingProject(@PathVariable("projectId") long projectId,
+                                   @RequestBody Project updatedProject) {
+        return projectService.updateProject(projectId, updatedProject);
+    }
 }

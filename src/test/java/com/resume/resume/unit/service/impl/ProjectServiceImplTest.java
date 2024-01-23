@@ -1,5 +1,6 @@
 package com.resume.resume.unit.service.impl;
 
+import com.resume.resume.exception.ProjectNotFoundException;
 import com.resume.resume.model.Project;
 import com.resume.resume.repository.ProjectRepository;
 import com.resume.resume.service.impl.ProjectServiceImpl;
@@ -65,7 +66,6 @@ class ProjectServiceImplTest {
                 "test.com/test.git",
                 "test.com/test.jpg"
         );
-        project.setId(projectId);
 
         Project updatedProject = new Project(
                 "updated test",
@@ -96,6 +96,7 @@ class ProjectServiceImplTest {
         // act
         // then
         assertThatThrownBy(() -> underTest.updateProject(projectId, updatedProject))
-                .isInstanceOf()
+                .isInstanceOf(ProjectNotFoundException.class)
+                .hasMessage("Project with id " + projectId + " not found!");
     }
 }
