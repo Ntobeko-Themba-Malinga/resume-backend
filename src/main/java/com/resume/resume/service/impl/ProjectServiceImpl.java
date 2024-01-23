@@ -44,4 +44,13 @@ public class ProjectServiceImpl implements ProjectService {
             project.setImage(updatedProject.getImage());
         return project;
     }
+
+    @Override
+    public void deleteProject(long id) {
+        Project project = projectRepository.findById(id)
+                .orElseThrow(() -> new ProjectNotFoundException(
+                        "Project with id " + id + " not found!"
+                ));
+        projectRepository.delete(project);
+    }
 }

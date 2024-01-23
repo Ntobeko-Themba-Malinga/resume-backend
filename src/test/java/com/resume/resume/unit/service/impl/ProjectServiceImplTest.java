@@ -70,7 +70,7 @@ class ProjectServiceImplTest {
         Project updatedProject = new Project(
                 "updated test",
                 "test.com/updated_test.git",
-                "test.com/updated_test.git"
+                "test.com/updated_test.jpg"
         );
 
         when(projectRepository.findById(projectId))
@@ -90,12 +90,49 @@ class ProjectServiceImplTest {
         Project updatedProject = new Project(
                 "updated test",
                 "test.com/updated_test.git",
-                "test.com/updated_test.git"
+                "test.com/updated_test.jpg"
         );
 
         // act
         // then
         assertThatThrownBy(() -> underTest.updateProject(projectId, updatedProject))
+                .isInstanceOf(ProjectNotFoundException.class)
+                .hasMessage("Project with id " + projectId + " not found!");
+    }
+
+    @Test
+    void deleteProjectIfExist() {
+        // given
+        long projectId = 1;
+        Project project = new Project(
+                "test",
+                "test.com/test.git",
+                "test.com/test.jpg"
+        );
+
+        when(projectRepository.findById(projectId))
+                .thenReturn(Optional.of(project));
+
+        // act
+        underTest.deleteProject(projectId);
+
+        // then
+        ArgumentCaptor<Project> projectArgumentCaptor = ArgumentCaptor
+                .forClass(Project.class);
+
+        verify(projectRepository).delete(projectArgumentCaptor.capture());
+
+        assertThat(projectArgumentCaptor.getValue()).isEqualTo(project);
+    }
+
+    @Test
+    void deleteProjectIfDoesNotExist() {
+        // given
+        long projectId = 1;
+
+        // act
+        // then
+        assertThatThrownBy(() -> underTest.deleteProject(projectId))
                 .isInstanceOf(ProjectNotFoundException.class)
                 .hasMessage("Project with id " + projectId + " not found!");
     }
