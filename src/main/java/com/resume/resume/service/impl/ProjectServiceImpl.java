@@ -18,4 +18,14 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Project> retrieveAllProjects() {
         return projectRepository.findAll();
     }
+
+    @Override
+    public Project addProject(Project project) {
+        return projectRepository.save(project);
+    }
+
+    @Override
+    public Project updateProject(long id, Project updatedProject) {
+        return null;
+    }
 }

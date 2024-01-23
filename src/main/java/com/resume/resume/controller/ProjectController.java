@@ -3,10 +3,7 @@ package com.resume.resume.controller;
 import com.resume.resume.model.Project;
 import com.resume.resume.service.ProjectService;
 import lombok.Data;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +18,10 @@ public class ProjectController {
     @GetMapping
     public List<Project> retrievingAllProjects() {
         return projectService.retrieveAllProjects();
+    }
+
+    @PostMapping
+    public Project addingAProject(@RequestBody Project project) {
+        return projectService.addProject(project);
     }
 }

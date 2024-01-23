@@ -2,10 +2,12 @@ package com.resume.resume.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Project")
 @Data
+@NoArgsConstructor
 public class Project {
 
     @Id
