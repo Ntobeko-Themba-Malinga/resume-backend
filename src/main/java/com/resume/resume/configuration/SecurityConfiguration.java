@@ -35,6 +35,7 @@ public class SecurityConfiguration {
                         .requestMatchers("api/v1/auth", HttpMethod.POST.name()).permitAll()
                         .requestMatchers("api/v1/skills", HttpMethod.GET.name()).permitAll()
                         .requestMatchers("api/v1/projects", HttpMethod.GET.name()).permitAll()
+                        .requestMatchers("api/v1/hobbies", HttpMethod.GET.name()).permitAll()
                         .anyRequest().hasAnyAuthority(Role.ADMIN.name()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
