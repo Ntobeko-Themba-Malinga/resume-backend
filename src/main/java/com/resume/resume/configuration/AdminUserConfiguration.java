@@ -19,9 +19,15 @@ public class AdminUserConfiguration {
             Optional<User> user = userRepository.findByRole(Role.ADMIN);
 
             if (user.isEmpty()) {
+                String username = System.getenv("ADMIN_USERNAME") ;
+                String password = System.getenv("ADMIN_PASSWORD");
+
+                username = (username == null) ? "admin@admin.com" : username;
+                password = (password == null) ? "admin" : password;
+
                 User adminUser = new User(
-                        "admin@admin.com",
-                        new BCryptPasswordEncoder().encode("admin"),
+                        username,
+                        new BCryptPasswordEncoder().encode(password),
                         Role.ADMIN
                 );
                 userRepository.save(adminUser);
